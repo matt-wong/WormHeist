@@ -11,12 +11,15 @@ public class cameraFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
+        if (!player){
+            playerMovement playerGObj = GameObject.FindObjectOfType<playerMovement>();
+            this.player = playerGObj.gameObject.transform;
+        }
     }
 
     void Update()
     {
-        Debug.Log(transform.position);
         transform.position = new Vector3(player.position.x + offset.x, player.position.y + offset.y, -5); // Camera follows the player with specified offset position
     }
 }
