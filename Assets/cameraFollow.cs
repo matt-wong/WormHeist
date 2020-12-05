@@ -15,6 +15,7 @@ public class cameraFollow : MonoBehaviour
         if (!player){
             playerMovement playerGObj = GameObject.FindObjectOfType<playerMovement>();
             this.player = playerGObj.gameObject.transform;
+            
         }
     }
 

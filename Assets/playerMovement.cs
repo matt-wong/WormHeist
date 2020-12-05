@@ -31,4 +31,6 @@ public class playerMovement : MonoBehaviour
 
         rb.AddForce(direction.normalized * 8000);
     }
+
+    
 }
