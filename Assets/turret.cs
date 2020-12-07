@@ -26,22 +26,42 @@ public class turret : MonoBehaviour
     }
 
     void ShootBullet(Vector2 vector) {
-        GameObject newBullet = Instantiate(this.BulletObject, this.transform.position, Quaternion.identity);
+        GameObject newBullet = Instantiate(this.BulletObject, this.transform.position + new Vector3(vector.normalized.x, vector.normalized.y, 0), Quaternion.identity);
         Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
-        vector  = vector.normalized;
 
-        if (Random.Range(0,2) == 0){
-            vector.x = vector.x + Random.Range(0f, 0.5f);
-        }else{
-            vector.y = vector.y + Random.Range(0f, 0.5f);
-        }
+        float angle = turret.Angle(vector);
+        angle += Random.Range(-2, 2);
 
-        rb.AddForce(vector * 5000);
+        Vector2 dtv = DegreeToVector2(angle).normalized;
+        Debug.Log(dtv);
+        rb.AddForce(dtv * 5000);
     }
 
     void ShootBulletLeft(){
         ShootBullet(Vector2.left);
+        ShootBullet(Vector2.up);
+        ShootBullet(Vector2.down);
+        ShootBullet(Vector2.right);
     }
 
+    public static float Angle(Vector2 p_vector2)
+    {
+        if (p_vector2.x < 0)
+        {
+            return 360 - (Mathf.Atan2(p_vector2.x, p_vector2.y) * Mathf.Rad2Deg * -1);
+        }
+        else
+        {
+            return Mathf.Atan2(p_vector2.x, p_vector2.y) * Mathf.Rad2Deg;
+        }
+    }
 
+    public static Vector2 DegreeToVector2(float degree)
+    {
+        return RadianToVector2(degree * Mathf.Deg2Rad);
+    }
+    public static Vector2 RadianToVector2(float radian)
+    {
+        return new Vector2(Mathf.Sin(radian), Mathf.Cos(radian));
+    }
 }
