@@ -6,23 +6,42 @@ public class turret : MonoBehaviour
 {
     public GameObject BulletObject;
     public GameObject LazerObject;
+
     private List<sensorLazer> lazers;
+    private List<GameObject> lazersObjects;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject newLazer = Instantiate(this.LazerObject, this.transform.position, Quaternion.identity);
-        newLazer.transform.localScale = new Vector3(10,1,0);
-        sensorLazer lazerScript = newLazer.GetComponentInChildren<sensorLazer>();
+        GameObject lazerLeft = Instantiate(this.LazerObject, this.transform.position, Quaternion.identity);
+        lazerLeft.transform.localScale = new Vector3(10, 1, 0);
+        sensorLazer lazerScript = lazerLeft.GetComponentInChildren<sensorLazer>();
 
-        lazerScript.IsTriggered += () => {Invoke("ShootBulletLeft", 1);};
-        //lazers.Add(lazerScript);
+        lazerScript.IsTriggered += () => { Invoke("ShootBulletLeft", 1); };
+
+        GameObject lazerDown = Instantiate(this.LazerObject, this.transform.position, Quaternion.identity);
+        lazerDown.transform.Rotate(0, 0, 90f);
+        lazerDown.transform.localScale = new Vector3(10, 1, 0);
+        lazerDown.SetActive(false);
+        sensorLazer lazerScript2 = lazerDown.GetComponentInChildren<sensorLazer>();
+        lazerScript2.IsTriggered += () => { Invoke("ShootBulletLeft", 1); };
+
+        lazersObjects = new List<GameObject>();
+        lazersObjects.Add(lazerLeft);
+        lazersObjects.Add(lazerDown);
+        
+        InvokeRepeating("NextLazerState",3,3);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void NextLazerState(){
+        lazersObjects[0].SetActive(!lazersObjects[0].activeSelf);
+        lazersObjects[1].SetActive(!lazersObjects[1].activeSelf);
     }
 
     void ShootBullet(Vector2 vector) {
