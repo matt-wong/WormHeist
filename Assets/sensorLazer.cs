@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,5 +32,12 @@ public class sensorLazer : MonoBehaviour
             IsReady = false;
         }
 
+    }
+
+    internal void Reset()
+    {
+        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+        sr.color = Color.red;
+        IsReady = true;
     }
 }
