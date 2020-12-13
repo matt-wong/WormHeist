@@ -9,6 +9,7 @@ public class turret : MonoBehaviour
         LeftRight_UpDown
     }
 
+    public float ShootDelay = 1f; 
     public eTurretType TurretType;
 
     public GameObject BulletObject;
@@ -33,11 +34,13 @@ public class turret : MonoBehaviour
     GameObject CreateLazerOfDirection(float angle, bool startingOn){
         GameObject newLazer = Instantiate(this.LazerObject, this.transform.position, Quaternion.identity);
         newLazer.transform.Rotate(0, 0, angle);
-        newLazer.transform.localScale = new Vector3(10, 1, 0);
+        newLazer.transform.localScale = new Vector3(1, 10, 0);
 
         newLazer.SetActive(startingOn);
-        sensorLazer lazerScript2 = newLazer.GetComponentInChildren<sensorLazer>();
-        lazerScript2.IsTriggered += () => { Invoke("ShootBulletLeft", 1); };
+        sensorLazer lazerScript = newLazer.GetComponentInChildren<sensorLazer>();
+        lazerScript.direction = VectorHelper.AngleToDirectionEnum(angle);
+        Debug.Log(lazerScript.direction);
+        lazerScript.IsTriggered += this.ShootBulletDirection;;
 
         lazersObjects.Add(newLazer);
         return newLazer;
@@ -54,9 +57,10 @@ public class turret : MonoBehaviour
         foreach (GameObject element in lazersObjects)
         {
             element.SetActive(!element.activeSelf);
-            if (element.activeSelf){
+            if (element.activeSelf)
+            {
                 sensorLazer lazer = element.GetComponentInChildren<sensorLazer>();
-                lazer.IsTriggered += () => { Invoke("ShootBulletLeft", 1); };
+                //lazer.IsTriggered += this.ShootBulletDirection;
                 lazer.Reset();
             }
         }
@@ -74,10 +78,17 @@ public class turret : MonoBehaviour
         rb.AddForce(dtv * 5000);
     }
 
-    void ShootBulletLeft(){
-        ShootBullet(Vector2.left);
-        ShootBullet(Vector2.up);
-        ShootBullet(Vector2.down);
-        ShootBullet(Vector2.right);
+    void ShootBulletDirection(eSensorDirection direction){
+        Debug.Log(direction);
+        StartCoroutine(Foo(VectorHelper.DirectionEnumToVector(direction), ShootDelay));
+    }
+
+
+
+    IEnumerator Foo(Vector2 vect, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        ShootBullet(vect);
     }
 }

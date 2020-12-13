@@ -3,11 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum eSensorDirection{
+    N,
+    E,
+    S,
+    W
+}
+
+
 public class sensorLazer : MonoBehaviour
 {
 
-    public System.Action IsTriggered;
+    public System.Action<eSensorDirection> IsTriggered;
     private bool IsReady = true;
+    public eSensorDirection direction = eSensorDirection.N;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +37,7 @@ public class sensorLazer : MonoBehaviour
             SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
             // TODO: Animation for Alarm
             sr.color = Color.green;
-            IsTriggered.Invoke();
+            IsTriggered.Invoke(this.direction);
             IsReady = false;
         }
 
