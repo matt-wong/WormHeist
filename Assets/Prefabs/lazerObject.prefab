@@ -42,25 +42,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: lazer
       objectReference: {fileID: 0}
+    - target: {fileID: 155677530375694009, guid: 867e7321701e12e4fad46eb2b1dfc51c, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 155677530375694009, guid: 867e7321701e12e4fad46eb2b1dfc51c, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 155677530375694009, guid: 867e7321701e12e4fad46eb2b1dfc51c, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 155677530375694010, guid: 867e7321701e12e4fad46eb2b1dfc51c, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 155677530375694010, guid: 867e7321701e12e4fad46eb2b1dfc51c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.99999994
       objectReference: {fileID: 0}
     - target: {fileID: 155677530375694010, guid: 867e7321701e12e4fad46eb2b1dfc51c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.36135387
+      value: 0.65579027
       objectReference: {fileID: 0}
     - target: {fileID: 155677530375694010, guid: 867e7321701e12e4fad46eb2b1dfc51c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 155677530375694010, guid: 867e7321701e12e4fad46eb2b1dfc51c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.57
+      value: 2.56
       objectReference: {fileID: 0}
     - target: {fileID: 155677530375694010, guid: 867e7321701e12e4fad46eb2b1dfc51c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -93,6 +105,14 @@ PrefabInstance:
     - target: {fileID: 155677530375694010, guid: 867e7321701e12e4fad46eb2b1dfc51c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 155677530375694011, guid: 867e7321701e12e4fad46eb2b1dfc51c, type: 3}
+      propertyPath: m_Size.y
+      value: 0.580907
+      objectReference: {fileID: 0}
+    - target: {fileID: 155677530375694011, guid: 867e7321701e12e4fad46eb2b1dfc51c, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.026634112
       objectReference: {fileID: 0}
     - target: {fileID: 155677530375694011, guid: 867e7321701e12e4fad46eb2b1dfc51c, type: 3}
       propertyPath: m_SpriteTilingProperty.drawMode
