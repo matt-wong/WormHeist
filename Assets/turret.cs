@@ -14,6 +14,7 @@ public class turret : MonoBehaviour
 
     public GameObject BulletObject;
     public GameObject LazerObject;
+    public GameObject LazerTrackObject;
 
     private List<GameObject> lazersObjects;
 
@@ -35,6 +36,10 @@ public class turret : MonoBehaviour
         GameObject newLazer = Instantiate(this.LazerObject, this.transform.position, Quaternion.identity);
         newLazer.transform.Rotate(0, 0, angle);
         newLazer.transform.localScale = new Vector3(1, 10, 0);
+
+        GameObject newLazerTrack = Instantiate(this.LazerTrackObject, this.transform.position, Quaternion.identity);
+        newLazerTrack.transform.Rotate(0, 0, angle);
+        newLazerTrack.transform.localScale = new Vector3(1, 10, 0);
 
         newLazer.SetActive(startingOn);
         sensorLazer lazerScript = newLazer.GetComponentInChildren<sensorLazer>();

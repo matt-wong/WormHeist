@@ -95,5 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090fbbb4c11784546814a14f89659a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShootDelay: 1
+  TurretType: 0
   BulletObject: {fileID: 4906841656809663311, guid: 20136f12b24bc8a45ab6e965e2d20ecb, type: 3}
   LazerObject: {fileID: 3222598370416252067, guid: 1cfaa3555ab42714394c7a7a8ec3e48a, type: 3}
+  LazerTrackObject: {fileID: 15914507247578426, guid: 1d13cd88a18d44f4e903a57bb2c668ca, type: 3}
