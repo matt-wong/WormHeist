@@ -9,7 +9,7 @@ public class turret : MonoBehaviour
         LeftRight_UpDown
     }
 
-    public float ShootDelay = 1f; 
+    public float ShootDelay = 0.5f; 
     public eTurretType TurretType;
 
     public GameObject BulletObject;
@@ -17,19 +17,32 @@ public class turret : MonoBehaviour
     public GameObject LazerTrackObject;
 
     private List<GameObject> lazersObjects;
+    public List<List<eSensorDirection>> SensorSequence;
+    private int sensorPhaseIndex = -1;
 
     // Start is called before the first frame update
     void Start()
     {
         //Default to Cross Alternating
+        SensorSequence = new List<List<eSensorDirection>>();
+        List<eSensorDirection> phase1 = new List<eSensorDirection>()  {eSensorDirection.E, eSensorDirection.W};
+        List<eSensorDirection> phase2 = new List<eSensorDirection>()  {eSensorDirection.N, eSensorDirection.S};
+        SensorSequence.Add(phase1);
+        SensorSequence.Add(phase2);
+
+        CreateLazersFromInstructions();
+
+        InvokeRepeating("NextLazerState",2,2);
+    }
+
+    private void CreateLazersFromInstructions()
+    {
         lazersObjects = new List<GameObject>();
         
         CreateLazerOfDirection(0, false);
         CreateLazerOfDirection(90, true);
         CreateLazerOfDirection(180, false);
         CreateLazerOfDirection(270, true);
-
-        InvokeRepeating("NextLazerState",3,3);
     }
 
     GameObject CreateLazerOfDirection(float angle, bool startingOn){
@@ -59,16 +72,36 @@ public class turret : MonoBehaviour
 
     void NextLazerState()
     {
+
+        this.sensorPhaseIndex += 1;
+        this.sensorPhaseIndex = this.sensorPhaseIndex % this.SensorSequence.Count;
+        //Clear all lazers first
         foreach (GameObject element in lazersObjects)
         {
-            element.SetActive(!element.activeSelf);
-            if (element.activeSelf)
+            element.SetActive(false);
+            
+        }
+
+        foreach (eSensorDirection dir in SensorSequence[this.sensorPhaseIndex]){
+            GameObject lazerObjectForDir = this.FindLazer(dir);
+            if (lazerObjectForDir)
             {
-                sensorLazer lazer = element.GetComponentInChildren<sensorLazer>();
-                //lazer.IsTriggered += this.ShootBulletDirection;
+                lazerObjectForDir.SetActive(true);
+                sensorLazer lazer = lazerObjectForDir.GetComponentInChildren<sensorLazer>();
                 lazer.Reset();
             }
         }
+    }
+
+    GameObject FindLazer(eSensorDirection dir){
+        return this.lazersObjects.Find((GameObject element ) => {
+            sensorLazer maybeObj = element.GetComponentInChildren<sensorLazer>();
+            if (maybeObj && maybeObj.direction == dir){
+                return true;
+            }else{
+                return false;
+            }
+        });
     }
 
     void ShootBullet(Vector2 vector) {
