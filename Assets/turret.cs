@@ -9,7 +9,7 @@ public class turret : MonoBehaviour
         LeftRight_UpDown
     }
 
-    public float ShootDelay = 0.5f; 
+    public float ShootDelay = 0.25f; 
     public eTurretType TurretType;
 
     public GameObject BulletObject;
@@ -32,7 +32,7 @@ public class turret : MonoBehaviour
 
         CreateLazersFromInstructions();
 
-        InvokeRepeating("NextLazerState",2,2);
+        InvokeRepeating("NextLazerState",0,3);
     }
 
     private void CreateLazersFromInstructions()
