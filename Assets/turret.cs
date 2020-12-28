@@ -68,11 +68,21 @@ public class turret : MonoBehaviour
     private void CreateLazersFromInstructions()
     {
         lazersObjects = new List<GameObject>();
-        
-        CreateLazerOfDirection(0, false);
-        CreateLazerOfDirection(90, true);
-        CreateLazerOfDirection(180, false);
-        CreateLazerOfDirection(270, true);
+        HashSet<eSensorDirection> allDirections = new HashSet<eSensorDirection>();
+
+        foreach (List<eSensorDirection> inst in SensorSequence)
+        {
+            foreach (eSensorDirection dir in inst)
+            {
+                allDirections.Add(dir);
+            }
+        }
+
+        foreach (eSensorDirection dir in allDirections)
+        {
+            CreateLazerOfDirection(VectorHelper.Angle(VectorHelper.DirectionEnumToVector(dir)), true);
+        }
+
     }
 
     GameObject CreateLazerOfDirection(float angle, bool startingOn){
