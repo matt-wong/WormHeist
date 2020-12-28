@@ -105,7 +105,6 @@ public class turret : MonoBehaviour
         newLazer.SetActive(startingOn);
         sensorLazer lazerScript = newLazer.GetComponentInChildren<sensorLazer>();
         lazerScript.direction = VectorHelper.AngleToDirectionEnum(angle);
-        Debug.Log(lazerScript.direction);
         lazerScript.IsTriggered += this.ShootBulletDirection;;
 
         lazersObjects.Add(newLazer);
@@ -160,12 +159,10 @@ public class turret : MonoBehaviour
         angle += Random.Range(-2, 2);
 
         Vector2 dtv = VectorHelper.DegreeToVector2(angle).normalized;
-        Debug.Log(dtv);
         rb.AddForce(dtv * 5000);
     }
 
     void ShootBulletDirection(eSensorDirection direction){
-        Debug.Log(direction);
         StartCoroutine(Foo(VectorHelper.DirectionEnumToVector(direction), ShootDelay));
     }
 
