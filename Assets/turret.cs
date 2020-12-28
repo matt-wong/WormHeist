@@ -7,7 +7,8 @@ public class turret : MonoBehaviour
 
     public enum eTurretType{
         LeftRight_UpDown,
-        LeftRight_Down
+        LeftRight_Down,
+        LeftRight_None
     }
 
     public float ShootDelay = 0.25f; 
@@ -46,6 +47,13 @@ public class turret : MonoBehaviour
             case eTurretType.LeftRight_Down:
                 phase1 = new List<eSensorDirection>() { eSensorDirection.E, eSensorDirection.W };
                 phase2 = new List<eSensorDirection>() { eSensorDirection.S };
+                SensorSequence.Add(phase1);
+                SensorSequence.Add(phase2);
+                break;
+
+            case eTurretType.LeftRight_None:
+                phase1 = new List<eSensorDirection>() { eSensorDirection.E, eSensorDirection.W };
+                phase2 = new List<eSensorDirection>() { };
                 SensorSequence.Add(phase1);
                 SensorSequence.Add(phase2);
                 break;
