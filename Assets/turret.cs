@@ -6,7 +6,8 @@ public class turret : MonoBehaviour
 {
 
     public enum eTurretType{
-        LeftRight_UpDown
+        LeftRight_UpDown,
+        LeftRight_Down
     }
 
     public float ShootDelay = 0.25f; 
@@ -23,16 +24,45 @@ public class turret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Default to Cross Alternating
-        SensorSequence = new List<List<eSensorDirection>>();
-        List<eSensorDirection> phase1 = new List<eSensorDirection>()  {eSensorDirection.E, eSensorDirection.W};
-        List<eSensorDirection> phase2 = new List<eSensorDirection>()  {eSensorDirection.N, eSensorDirection.S};
-        SensorSequence.Add(phase1);
-        SensorSequence.Add(phase2);
+        PopulateSequence();
 
         CreateLazersFromInstructions();
 
         InvokeRepeating("NextLazerState",0,3);
+    }
+
+    private void PopulateSequence()
+    {
+        SensorSequence = new List<List<eSensorDirection>>();
+        switch (this.TurretType)
+        {
+            case eTurretType.LeftRight_UpDown:
+                List<eSensorDirection> phase1 = new List<eSensorDirection>() { eSensorDirection.E, eSensorDirection.W };
+                List<eSensorDirection> phase2 = new List<eSensorDirection>() { eSensorDirection.N, eSensorDirection.S };
+                SensorSequence.Add(phase1);
+                SensorSequence.Add(phase2);
+                break;
+
+            case eTurretType.LeftRight_Down:
+                phase1 = new List<eSensorDirection>() { eSensorDirection.E, eSensorDirection.W };
+                phase2 = new List<eSensorDirection>() { eSensorDirection.S };
+                SensorSequence.Add(phase1);
+                SensorSequence.Add(phase2);
+                break;
+
+            default:
+                phase1 = new List<eSensorDirection>() { eSensorDirection.E, eSensorDirection.W };
+                phase2 = new List<eSensorDirection>() { eSensorDirection.N, eSensorDirection.S };
+                SensorSequence.Add(phase1);
+                SensorSequence.Add(phase2);
+                break;
+
+        }
+        if (this.TurretType == eTurretType.LeftRight_UpDown)
+        {
+
+
+        }
     }
 
     private void CreateLazersFromInstructions()

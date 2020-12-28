@@ -2278,7 +2278,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!114 &519420030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8262,6 +8262,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8736893355172870737, guid: d5ed0d82603ba7c45951b5d9d739eafe, type: 3}
+      propertyPath: TurretType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8736893355172870737, guid: d5ed0d82603ba7c45951b5d9d739eafe, type: 3}
       propertyPath: LazerObject
       value: 
