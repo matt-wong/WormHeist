@@ -2758,6 +2758,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8736893355172870737, guid: d5ed0d82603ba7c45951b5d9d739eafe, type: 3}
+      propertyPath: phaseTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736893355172870737, guid: d5ed0d82603ba7c45951b5d9d739eafe, type: 3}
+      propertyPath: TurretType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736893355172870737, guid: d5ed0d82603ba7c45951b5d9d739eafe, type: 3}
       propertyPath: LazerObject
       value: 
       objectReference: {fileID: 3222598370416252067, guid: 1cfaa3555ab42714394c7a7a8ec3e48a, type: 3}
@@ -2771,11 +2779,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8736893355172870750, guid: d5ed0d82603ba7c45951b5d9d739eafe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 47.8
+      value: 38.1
       objectReference: {fileID: 0}
     - target: {fileID: 8736893355172870750, guid: d5ed0d82603ba7c45951b5d9d739eafe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -114.3
+      value: -156.3
       objectReference: {fileID: 0}
     - target: {fileID: 8736893355172870750, guid: d5ed0d82603ba7c45951b5d9d739eafe, type: 3}
       propertyPath: m_LocalPosition.z

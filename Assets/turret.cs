@@ -18,6 +18,7 @@ public class turret : MonoBehaviour
     public GameObject BulletObject;
     public GameObject LazerObject;
     public GameObject LazerTrackObject;
+    public float phaseTime = 3;
 
     private List<GameObject> lazersObjects;
     public List<List<eSensorDirection>> SensorSequence;
@@ -30,7 +31,7 @@ public class turret : MonoBehaviour
 
         CreateLazersFromInstructions();
 
-        InvokeRepeating("NextLazerState",0,3);
+        InvokeRepeating("NextLazerState",0,phaseTime);
     }
 
     private void PopulateSequence()
