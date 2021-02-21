@@ -9,7 +9,8 @@ public class turret : MonoBehaviour
         LeftRight_UpDown,
         LeftRight_Down,
         LeftRight_None,
-        Cross_Turn
+        Cross_Turn,
+        Clockwise_Rotate
     }
 
     public float ShootDelay = 0.25f; 
@@ -39,9 +40,28 @@ public class turret : MonoBehaviour
         SensorSequence = new List<List<eSensorDirection>>();
         switch (this.TurretType)
         {
+            case eTurretType.Clockwise_Rotate:
+                List<eSensorDirection> phase1 = new List<eSensorDirection>() { eSensorDirection.N};
+                List<eSensorDirection> phase2 = new List<eSensorDirection>() { eSensorDirection.NE};
+                List<eSensorDirection> phase3 = new List<eSensorDirection>() { eSensorDirection.E};
+                List<eSensorDirection> phase4 = new List<eSensorDirection>() { eSensorDirection.SE};
+                List<eSensorDirection> phase5 = new List<eSensorDirection>() { eSensorDirection.S};
+                List<eSensorDirection> phase6 = new List<eSensorDirection>() { eSensorDirection.SW};
+                List<eSensorDirection> phase7 = new List<eSensorDirection>() { eSensorDirection.W};
+                List<eSensorDirection> phase8 = new List<eSensorDirection>() { eSensorDirection.NW};
+                SensorSequence.Add(phase1);
+                SensorSequence.Add(phase2);
+                SensorSequence.Add(phase3);
+                SensorSequence.Add(phase4);
+                SensorSequence.Add(phase5);
+                SensorSequence.Add(phase6);
+                SensorSequence.Add(phase7);
+                SensorSequence.Add(phase8);
+                break;
+
             case eTurretType.LeftRight_UpDown:
-                List<eSensorDirection> phase1 = new List<eSensorDirection>() { eSensorDirection.E, eSensorDirection.W };
-                List<eSensorDirection> phase2 = new List<eSensorDirection>() { eSensorDirection.N, eSensorDirection.S };
+                phase1 = new List<eSensorDirection>() { eSensorDirection.E, eSensorDirection.W };
+                phase2 = new List<eSensorDirection>() { eSensorDirection.N, eSensorDirection.S };
                 SensorSequence.Add(phase1);
                 SensorSequence.Add(phase2);
                 break;
@@ -66,19 +86,12 @@ public class turret : MonoBehaviour
                 SensorSequence.Add(phase1);
                 SensorSequence.Add(phase2);
                 break;
-
             default:
                 phase1 = new List<eSensorDirection>() { eSensorDirection.E, eSensorDirection.W };
                 phase2 = new List<eSensorDirection>() { eSensorDirection.N, eSensorDirection.S };
                 SensorSequence.Add(phase1);
                 SensorSequence.Add(phase2);
                 break;
-
-        }
-        if (this.TurretType == eTurretType.LeftRight_UpDown)
-        {
-
-
         }
     }
 
