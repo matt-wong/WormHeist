@@ -5,9 +5,13 @@ using UnityEngine;
 
 public enum eSensorDirection{
     N,
+    NE,
     E,
+    SE,
     S,
-    W
+    SW,
+    W,
+    NW
 }
 
 

@@ -25,12 +25,20 @@ public static class VectorHelper{
     public static eSensorDirection AngleToDirectionEnum(float angle){
         if (angle == 0){
             return eSensorDirection.N;
+        }else if (angle == 45){
+            return eSensorDirection.NW;
         }else if (angle == 90){
             return eSensorDirection.W;
+        }else if (angle == 135){
+            return eSensorDirection.SW;
         }else if (angle == 180){
             return eSensorDirection.S;
+        }else if (angle == 225){
+            return eSensorDirection.SE;
         }else if (angle == 270){
             return eSensorDirection.E;
+        }else if (angle == 315){
+            return eSensorDirection.NE;
         }
         return eSensorDirection.N;
     }
@@ -52,6 +60,22 @@ public static class VectorHelper{
         else if (direction == eSensorDirection.E)
         {
             return new Vector2(1, 0);
+        }
+        else if (direction == eSensorDirection.NW)
+        {
+            return new Vector2(-1, 1).normalized;
+        }
+        else if (direction == eSensorDirection.NE)
+        {
+            return new Vector2(1, 1).normalized;
+        }
+        else if (direction == eSensorDirection.SW)
+        {
+            return new Vector2(-1, -1).normalized;
+        }
+        else if (direction == eSensorDirection.SE)
+        {
+            return new Vector2(1, -1).normalized;
         }
         return new Vector2(0, 0);
     }
