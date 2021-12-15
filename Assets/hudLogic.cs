@@ -22,7 +22,9 @@ public class hudLogic : MonoBehaviour
 
     void UpdateLevelStatusText(bool test)
     {
-        this.levelStatusText.text = "WOOHOO!";   
+        if (this.levelStatusText){
+            this.levelStatusText.text = "WOOHOO!";   
+        }
     }
 
     // Update is called once per frame
