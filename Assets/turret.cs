@@ -127,7 +127,7 @@ public class turret : MonoBehaviour
         newLazer.SetActive(startingOn);
         sensorLazer lazerScript = newLazer.GetComponentInChildren<sensorLazer>();
         lazerScript.direction = VectorHelper.AngleToDirectionEnum(angle);
-        lazerScript.IsTriggered += this.ShootBulletDirection;;
+        lazerScript.IsTriggered += this.ShootBulletDirection;
 
         lazersObjects.Add(newLazer);
         return newLazer;

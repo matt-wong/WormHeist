@@ -8,18 +8,19 @@ public class gameManager : MonoBehaviour
 
     public static gameManager Instance;
     private bool myIsLevelCompleted = false;
-    
-    public bool IsLevelCompleted{
-        get {return myIsLevelCompleted;}
-        set {
-            
+    public Action<bool> LevelCompletedEvent;
+
+    public bool IsLevelCompleted
+    {
+        get { return myIsLevelCompleted; }
+        set
+        {
+
             myIsLevelCompleted = value;
             Debug.Log("Level Done!");
-            // LevelCompletedEvent.Invoke(myIsLevelCompleted);
-            }
+            LevelCompletedEvent.Invoke(myIsLevelCompleted);
+        }
     }
-
-    public Action<bool> LevelCompletedEvent; 
 
     // Start is called before the first frame update
     void Awake()

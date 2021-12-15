@@ -1183,6 +1183,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: smallCoin
       objectReference: {fileID: 0}
+    - target: {fileID: 7195414052955116055, guid: efe1b30631aca3942b898119bf34eb7d, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195414052955116055, guid: efe1b30631aca3942b898119bf34eb7d, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7356628
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195414052955116055, guid: efe1b30631aca3942b898119bf34eb7d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efe1b30631aca3942b898119bf34eb7d, type: 3}
 --- !u!1001 &831846483
@@ -2763,7 +2775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8736893355172870737, guid: d5ed0d82603ba7c45951b5d9d739eafe, type: 3}
       propertyPath: TurretType
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8736893355172870737, guid: d5ed0d82603ba7c45951b5d9d739eafe, type: 3}
       propertyPath: LazerObject
@@ -2779,11 +2791,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8736893355172870750, guid: d5ed0d82603ba7c45951b5d9d739eafe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38.1
+      value: 63.8
       objectReference: {fileID: 0}
     - target: {fileID: 8736893355172870750, guid: d5ed0d82603ba7c45951b5d9d739eafe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -156.3
+      value: -189
       objectReference: {fileID: 0}
     - target: {fileID: 8736893355172870750, guid: d5ed0d82603ba7c45951b5d9d739eafe, type: 3}
       propertyPath: m_LocalPosition.z
