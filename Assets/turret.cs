@@ -15,6 +15,7 @@ public class turret : MonoBehaviour
 
     public float ShootDelay = 0.25f; 
     public eTurretType TurretType;
+    public int SequenceOffset = 0;
 
     public GameObject BulletObject;
     public GameObject LazerObject;
@@ -29,7 +30,7 @@ public class turret : MonoBehaviour
     void Start()
     {
         PopulateSequence();
-
+        this.sensorPhaseIndex = SequenceOffset;
         CreateLazersFromInstructions();
 
         InvokeRepeating("NextLazerState",0,phaseTime);
