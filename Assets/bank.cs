@@ -16,15 +16,17 @@ public class bank : MonoBehaviour
     {
          myText = this.gameObject.GetComponentInChildren<Text>();
          myText.text = $"${myCash} / {RequiredCash}";
+
+        gameManager.Instance.RequiredCash = RequiredCash;
+
     }
 
     public void Deposit(int addValue){
         myCash += addValue;
         
         myText.text = $"${myCash} / {RequiredCash}";
+        gameManager.Instance.RequiredCash = RequiredCash;
+        gameManager.Instance.CurrentCash = myCash;
 
-        if (myCash >= RequiredCash){
-            gameManager.Instance.IsLevelCompleted = true;
-        }
     } 
 }

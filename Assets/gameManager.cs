@@ -10,6 +10,9 @@ public class gameManager : MonoBehaviour
     private bool myIsLevelCompleted = false;
     public Action<bool> LevelCompletedEvent;
 
+    public int RequiredCash;
+    public int CurrentCash;
+
     public bool IsLevelCompleted
     {
         get { return myIsLevelCompleted; }
