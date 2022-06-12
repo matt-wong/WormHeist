@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2584285302053019627}
   - component: {fileID: 2584285302053019625}
   - component: {fileID: 2584285302053019626}
-  m_Layer: 5
-  m_Name: Text
+  m_Layer: 0
+  m_Name: LevelStatusText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!1 &2584285302755770338
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,10 +91,11 @@ GameObject:
   - component: {fileID: 2584285302755770343}
   - component: {fileID: 2584285302755770336}
   - component: {fileID: 2584285302755770337}
-  m_Layer: 5
+  - component: {fileID: 299224943}
+  m_Layer: 0
   m_Name: HUDCanvas
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -136,7 +137,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1214329021
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &2584285302755770336
@@ -178,3 +179,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &299224943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2584285302755770338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d458bad0230694cba5e5c3ea1e54b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
