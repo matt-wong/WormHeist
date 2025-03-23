@@ -9,6 +9,8 @@ public class gyroscopeTracker : MonoBehaviour
     public Text myText;
     public GameObject dot;
 
+    public bool isEnabled = false;
+
     public float CURSOR_MOVEMENT_SCALE = 600;
     public double tiltAngle = 0;
     public double tiltX = 0;
@@ -22,14 +24,17 @@ public class gyroscopeTracker : MonoBehaviour
         if (SystemInfo.supportsGyroscope)
         {
             Input.gyro.enabled = true;
+            this.isEnabled = true;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.SetTilt(Input.gyro.attitude);
-      }
+        if (this.isEnabled){
+            this.SetTilt(Input.gyro.attitude);
+        }
+    }
 
     private void SetTilt(Quaternion q)
     {
