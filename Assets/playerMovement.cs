@@ -27,7 +27,7 @@ public class playerMovement : MonoBehaviour
     private void MoveTowardMouse(){        
         Rigidbody2D rb = GetComponentInChildren<Rigidbody2D>();
         // if (gyro.isEnabled){
-        Vector2 tiltDirection = new Vector2((float)gyro.tiltX, (float)gyro.tiltY);
+        Vector2 tiltDirection = new Vector2((float)gyro.TiltX, (float)gyro.TiltY);
         
         rb.AddForce(tiltDirection.normalized * 8000);
     }

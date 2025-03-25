@@ -12,8 +12,8 @@ public class gyroscopeTracker : MonoBehaviour
     public bool isEnabled = false;
 
     public float CURSOR_MOVEMENT_SCALE = 600;
-    public double tiltX = 0;
-    public double tiltY = 0;
+    public double TiltX = 0;
+    public double TiltY = 0;
 
     private readonly float TILT_SCALE = 1.5f;
 
@@ -47,18 +47,21 @@ public class gyroscopeTracker : MonoBehaviour
     }
 
     private void setMovementDirection(Vector2 vect){
-        // Normalize the vector to make it a unit vector.
-        vect.Normalize();
-
-        // Apply sensitivity to the tilt vector.
-        vect *= TILT_SCALE;
-
         double angle = (float)getAngle(vect);
-        this.tiltX = vect.x;
-        this.tiltY = vect.y;
+        this.TiltX = 0;
+        this.TiltY = 0;
 
         if (vect.magnitude > 0.5f)
         {
+            // Normalize the vector to make it a unit vector.
+            vect.Normalize();
+
+            // Apply sensitivity to the tilt vector.
+            vect *= TILT_SCALE;
+            // These are read by movement script
+            this.TiltX = vect.x;
+            this.TiltY = vect.y;
+
             RectTransform rect_transform = this.dot.gameObject.GetComponentInChildren<RectTransform>();
             RawImage rawImage = this.dot.gameObject.GetComponentInChildren<RawImage>();
             rawImage.enabled = true;
@@ -73,10 +76,8 @@ public class gyroscopeTracker : MonoBehaviour
     // Find the GameObject with the playerMovement component
     GameObject playerObject = GameObject.Find("wormPlayer");
     if (playerObject != null) {
-        Debug.Log("here!");
         playerMovement playerMov = playerObject.GetComponentInChildren<playerMovement>();
         if (playerMov != null) {
-            Debug.Log("here1!");
             Transform transform1 = playerMov.transform;
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction = new Vector2(worldPosition.x - transform1.position.x, worldPosition.y - transform1.position.y);
