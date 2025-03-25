@@ -12,30 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
   m_Name: enemyTurretRuleTile
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 21300000, guid: 80cc8d218dc9bee4091ecde845959866, type: 3}
-  m_DefaultGameObject: {fileID: 0}
-  m_DefaultColliderType: 1
-  m_TilingRules:
-  - m_Id: 0
-    m_Sprites:
-    - {fileID: -1975026301, guid: deb0662c96ada1b48bfd33b4b179a6e0, type: 3}
-    - {fileID: 1493930659, guid: deb0662c96ada1b48bfd33b4b179a6e0, type: 3}
-    - {fileID: -664827859, guid: deb0662c96ada1b48bfd33b4b179a6e0, type: 3}
-    m_GameObject: {fileID: 0}
-    m_MinAnimationSpeed: 1
-    m_MaxAnimationSpeed: 1
-    m_PerlinScale: 0.339
-    m_Output: 1
-    m_ColliderType: 1
-    m_RandomTransform: 1
-    m_Neighbors: 
-    m_NeighborPositions:
-    - {x: -1, y: 1, z: 0}
-    - {x: 0, y: 1, z: 0}
-    - {x: 1, y: 1, z: 0}
-    - {x: -1, y: 0, z: 0}
-    - {x: 1, y: 0, z: 0}
-    - {x: -1, y: -1, z: 0}
-    - {x: 0, y: -1, z: 0}
-    - {x: 1, y: -1, z: 0}
-    m_RuleTransform: 0
+  m_DefaultSprite: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
+  m_DefaultGameObject: {fileID: 8736893355172870748, guid: d5ed0d82603ba7c45951b5d9d739eafe, type: 3}
+  m_DefaultColliderType: 0
+  m_TilingRules: []
