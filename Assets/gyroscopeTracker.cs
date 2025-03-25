@@ -12,7 +12,6 @@ public class gyroscopeTracker : MonoBehaviour
     public bool isEnabled = false;
 
     public float CURSOR_MOVEMENT_SCALE = 600;
-    public double tiltAngle = 0;
     public double tiltX = 0;
     public double tiltY = 0;
 
@@ -20,7 +19,6 @@ public class gyroscopeTracker : MonoBehaviour
 
     private void Start()
     {
-        // myText = GetComponent<Text>();
         if (SystemInfo.supportsGyroscope)
         {
             Input.gyro.enabled = true;
@@ -33,31 +31,33 @@ public class gyroscopeTracker : MonoBehaviour
     {
         if (this.isEnabled){
             this.SetTilt(Input.gyro.attitude);
+        } else {
+            this.SetDirectionFromMouse();
         }
     }
 
     private void SetTilt(Quaternion q)
     {
-
         // Get accelerometer data from the device.
         Vector3 accelerometerData = Input.acceleration;
 
         // Create a 2D vector based on the accelerometer data.
         Vector2 tiltVector = new Vector2(accelerometerData.x, accelerometerData.y + 0.75f);
+        this.setMovementDirection(tiltVector);
+    }
 
+    private void setMovementDirection(Vector2 vect){
         // Normalize the vector to make it a unit vector.
-        tiltVector.Normalize();
+        vect.Normalize();
 
         // Apply sensitivity to the tilt vector.
-        tiltVector *= TILT_SCALE;
+        vect *= TILT_SCALE;
 
-        double angle = (float)getAngle(tiltVector);
-        this.tiltX = tiltVector.x;
-        this.tiltY = tiltVector.y;
+        double angle = (float)getAngle(vect);
+        this.tiltX = vect.x;
+        this.tiltY = vect.y;
 
-        this.tiltAngle = angle;
-
-        if (tiltVector.magnitude > 0.5f)
+        if (vect.magnitude > 0.5f)
         {
             RectTransform rect_transform = this.dot.gameObject.GetComponentInChildren<RectTransform>();
             RawImage rawImage = this.dot.gameObject.GetComponentInChildren<RawImage>();
@@ -67,6 +67,22 @@ public class gyroscopeTracker : MonoBehaviour
             RawImage rawImage = this.dot.gameObject.GetComponentInChildren<RawImage>();
             rawImage.enabled = false;
         }
+    }
+
+    private void SetDirectionFromMouse(){
+    // Find the GameObject with the playerMovement component
+    GameObject playerObject = GameObject.Find("wormPlayer");
+    if (playerObject != null) {
+        Debug.Log("here!");
+        playerMovement playerMov = playerObject.GetComponentInChildren<playerMovement>();
+        if (playerMov != null) {
+            Debug.Log("here1!");
+            Transform transform1 = playerMov.transform;
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction = new Vector2(worldPosition.x - transform1.position.x, worldPosition.y - transform1.position.y);
+            this.setMovementDirection(direction);
+        }
+    }
     }
 
     public double getAngle(Vector2 vector2)

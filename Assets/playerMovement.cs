@@ -24,21 +24,12 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-    private void MoveTowardMouse(){
-
+    private void MoveTowardMouse(){        
         Rigidbody2D rb = GetComponentInChildren<Rigidbody2D>();
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = new Vector2(worldPosition.x - transform.position.x, worldPosition.y - transform.position.y);
+        // if (gyro.isEnabled){
+        Vector2 tiltDirection = new Vector2((float)gyro.tiltX, (float)gyro.tiltY);
         
-        if (gyro.isEnabled){
-            Vector2 tiltDirection = new Vector2((float)gyro.tiltX, (float)gyro.tiltY);
-            direction = tiltDirection;
-        }
-
-        // float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //  transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-
-        rb.AddForce(direction.normalized * 8000);
+        rb.AddForce(tiltDirection.normalized * 8000);
     }
 
     

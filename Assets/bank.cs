@@ -14,8 +14,8 @@ public class bank : MonoBehaviour
 
     void Start()
     {
-         myText = this.gameObject.GetComponentInChildren<Text>();
-         myText.text = $"${myCash} / {RequiredCash}";
+         // myText = this.gameObject.GetComponentInChildren<Text>();
+         // myText.text = $"${myCash} / {RequiredCash}";
 
         gameManager.Instance.RequiredCash = RequiredCash;
 
