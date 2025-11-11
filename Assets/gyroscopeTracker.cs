@@ -51,7 +51,7 @@ public class gyroscopeTracker : MonoBehaviour
         this.TiltX = 0;
         this.TiltY = 0;
 
-        if (vect.magnitude > 0.5f)
+        if (vect.magnitude > 0.1f)
         {
             // Normalize the vector to make it a unit vector.
             vect.Normalize();
