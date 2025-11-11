@@ -20,12 +20,12 @@ public class bullet : MonoBehaviour
     {
         if (!myWasFired)
         {
-            if (myRBody.velocity.magnitude > 1)
+            if (myRBody.linearVelocity.magnitude > 1)
             {
                 myWasFired = true;
             }
         }
-        else if (myRBody.velocity.magnitude < MIN_SPEED)
+        else if (myRBody.linearVelocity.magnitude < MIN_SPEED)
         {
             Debug.Log("DEAD");
             Destroy(gameObject);
