@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,13 +17,10 @@ public class paywall : MonoBehaviour
         spriteRenderer = this.gameObject.GetComponentInChildren<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    internal void SetActive(bool v)
     {
-        if (gameManager.Instance.CurrentCash > RequiredCash){
-            Debug.Log("OPEN");
-            Destroy(wallCollider);
-            this.spriteRenderer.color = new Color(1f,1f,1f,0.25f);
-        };
+        Debug.Log("OPEN");
+        Destroy(wallCollider);
+        this.spriteRenderer.color = new Color(1f,1f,1f,0.25f);
     }
 }

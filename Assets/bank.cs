@@ -9,6 +9,8 @@ public class bank : MonoBehaviour
     public int Cash { get {return myCash;}}
     public int RequiredCash = 3;
 
+    public paywall payWall;
+
     private Text myText; 
 
 
@@ -25,6 +27,9 @@ public class bank : MonoBehaviour
         myCash += addValue;
         
         myText.text = $"${myCash} / {RequiredCash}";
+        if (myCash >= RequiredCash){
+            payWall.SetActive(false);
+        }
         gameManager.Instance.RequiredCash = RequiredCash;
         gameManager.Instance.CurrentCash = myCash;
 
