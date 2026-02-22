@@ -21,10 +21,9 @@ public class spawnPoint : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player") && gm != null)
         {
-            Debug.Log("Player reached spawn point.");
-            // gm.SetSpawnId(spawnID);
+            gm.CurrentSpawnId = spawnID;
 
             // Animate color to white over 0.5 seconds
             SpriteRenderer sr = GetComponent<SpriteRenderer>();

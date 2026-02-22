@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -35,17 +35,18 @@ public class gameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // move player to the spawn point (GameObject with tag "PlayerSpawn")
-        GameObject player = GameObject.FindWithTag("Player");
-        GameObject[] spawns = GameObject.FindGameObjectsWithTag("PlayerSpawn");
+        // move player to the spawn point (GameObject with tag "Respawn")
+        GameObject player = GameObject.FindAnyObjectByType<playerMovement>().gameObject.transform.parent.gameObject;
+        GameObject[] spawns = GameObject.FindGameObjectsWithTag("Respawn");
 
         GameObject selectedSpawn = spawns.FirstOrDefault(
-            s => s.GetComponent<spawnPoint>()?.spawnID == 0
-        ); // default to first spawn point
+            s => s.GetComponent<spawnPoint>()?.spawnID == CurrentSpawnId
+        ) ?? spawns.FirstOrDefault(s => s.GetComponent<spawnPoint>() != null);
 
         if (player != null && selectedSpawn != null)
         {
             player.transform.position = selectedSpawn.transform.position;
+            Debug.Log(CurrentSpawnId);
             // optional: also reset velocity if Rigidbody2D exists
             var rb = player.GetComponent<Rigidbody2D>();
             if (rb != null) rb.linearVelocity = Vector2.zero;
