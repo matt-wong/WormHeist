@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,6 +28,8 @@ public class bank : MonoBehaviour
         
         myText.text = $"${myCash} / {RequiredCash}";
         if (myCash >= RequiredCash){
+            if (gameManager.Instance != null)
+                gameManager.Instance.DeactivatePaywall(payWall.paywallId);
             payWall.SetActive(false);
         }
 

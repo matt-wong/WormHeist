@@ -52,8 +52,9 @@ public class gameManager : MonoBehaviour
             if (rb != null) rb.linearVelocity = Vector2.zero;
         }
 
-        // Optionally, notify scene objects about saved state:
-        // e.g. find all paywalls and let them query GameManager.Instance.IsPaywallDeactivated(id)
+        // Paywalls re-apply saved state in their own Start() via IsPaywallDeactivated(paywallId)
+
+
     }
 
     // Example API for stored state
