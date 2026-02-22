@@ -1,39 +1,61 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
+    public static gameManager Instance { get; private set; }
 
-    public static gameManager Instance;
-    private bool myIsLevelCompleted = false;
-    public Action<bool> LevelCompletedEvent;
+    public int CurrentCash = 0;
 
-    public int RequiredCash;
-    public int CurrentCash;
+    // example state you want to keep across reloads
+    private HashSet<int> deactivatedPaywalls = new HashSet<int>();
 
-    public bool IsLevelCompleted
-    {
-        get { return myIsLevelCompleted; }
-        set
-        {
+    public int CurrentSpawnId = 0;
 
-            myIsLevelCompleted = value;
-            Debug.Log("Level Done!");
-            LevelCompletedEvent.Invoke(myIsLevelCompleted);
-        }
-    }
-
-    // Start is called before the first frame update
     void Awake()
     {
-        if (Instance != null){
-            Destroy(gameObject);
-        }else {
+        if (Instance == null)
+        {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // move player to the spawn point (GameObject with tag "PlayerSpawn")
+        GameObject player = GameObject.FindWithTag("Player");
+        GameObject[] spawns = GameObject.FindGameObjectsWithTag("PlayerSpawn");
+
+        GameObject selectedSpawn = spawns.FirstOrDefault(
+            s => s.GetComponent<spawnPoint>()?.spawnID == 0
+        ); // default to first spawn point
+
+        if (player != null && selectedSpawn != null)
+        {
+            player.transform.position = selectedSpawn.transform.position;
+            // optional: also reset velocity if Rigidbody2D exists
+            var rb = player.GetComponent<Rigidbody2D>();
+            if (rb != null) rb.linearVelocity = Vector2.zero;
+        }
+
+        // Optionally, notify scene objects about saved state:
+        // e.g. find all paywalls and let them query GameManager.Instance.IsPaywallDeactivated(id)
+    }
+
+    // Example API for stored state
+    public void DeactivatePaywall(int id) => deactivatedPaywalls.Add(id);
+    public bool IsPaywallDeactivated(int id) => deactivatedPaywalls.Contains(id);
 }

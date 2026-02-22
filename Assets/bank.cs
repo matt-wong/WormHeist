@@ -19,7 +19,7 @@ public class bank : MonoBehaviour
          myText = this.gameObject.GetComponentInChildren<Text>();
          myText.text = $"${myCash} / {RequiredCash}";
 
-        gameManager.Instance.RequiredCash = RequiredCash;
+        // gameManager.Instance.RequiredCash = RequiredCash;
 
     }
 
@@ -30,7 +30,7 @@ public class bank : MonoBehaviour
         if (myCash >= RequiredCash){
             payWall.SetActive(false);
         }
-        gameManager.Instance.RequiredCash = RequiredCash;
+
         gameManager.Instance.CurrentCash = myCash;
 
     } 

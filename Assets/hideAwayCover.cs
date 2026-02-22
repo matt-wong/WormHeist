@@ -25,4 +25,13 @@ public class hideAwayCover : MonoBehaviour
             sr.color = new Color(1f, 1f, 1f, 0.25f);
         }
     }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+        if (collision.gameObject.tag == "Player" && sr != null)
+        {
+            sr.color = new Color(1f, 1f, 1f, 0.75f);
+        }
+    }
 }

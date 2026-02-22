@@ -13,7 +13,7 @@ public class hudLogic : MonoBehaviour
         this.levelStatusText = this.gameObject.GetComponentInChildren<Text>();
 
         gameManager gm = gameManager.Instance;
-        gm.LevelCompletedEvent += this.UpdateLevelStatusText;
+        // gm.LevelCompletedEvent += this.UpdateLevelStatusText;
 
     }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
@@ -42,14 +43,26 @@ public class gyroscopeTracker : MonoBehaviour
         Vector3 accelerometerData = Input.acceleration;
 
         // Create a 2D vector based on the accelerometer data.
-        Vector2 tiltVector = new Vector2(accelerometerData.x, accelerometerData.y + 0.75f);
+        // Offset y so that 0,0 = ~45° backward (phone held with user looking down at it).
+        const float NEUTRAL_TILT_BACK_DEG = 45f;
+        float yOffset = Mathf.Cos(NEUTRAL_TILT_BACK_DEG * Mathf.Deg2Rad); // ~0.707 for 45°
+        Vector2 tiltVector = new Vector2(accelerometerData.x, accelerometerData.y + yOffset);
         this.setMovementDirection(tiltVector);
     }
 
-    private void setMovementDirection(Vector2 vect){
+    private void setMovementDirection(Vector2 vect)
+    {
+        RectTransform rect_transform = this.dot.gameObject.GetComponentInChildren<RectTransform>();
+        RawImage arrowImage = this.dot.gameObject.GetComponentInChildren<RawImage>();
         double angle = (float)getAngle(vect);
         this.TiltX = 0;
         this.TiltY = 0;
+
+        // scale the arrow image to the magnitude of the vector
+        double SCALE_FACTOR = 10;
+        float xScale = (float)(vect.magnitude * SCALE_FACTOR);
+        float yScale = (float)(vect.magnitude * SCALE_FACTOR);
+        arrowImage.transform.localScale = new Vector3(Math.Min(xScale, 1), Math.Min(yScale, 1), 1);
 
         if (vect.magnitude > 0.1f)
         {
@@ -62,13 +75,13 @@ public class gyroscopeTracker : MonoBehaviour
             this.TiltX = vect.x;
             this.TiltY = vect.y;
 
-            RectTransform rect_transform = this.dot.gameObject.GetComponentInChildren<RectTransform>();
-            RawImage rawImage = this.dot.gameObject.GetComponentInChildren<RawImage>();
-            rawImage.enabled = true;
+
+            arrowImage.color = vect.magnitude > 0.1f ? Color.green : Color.red;
             rect_transform.rotation = Quaternion.Euler(0, 0, (float)angle);
-        }else {
-            RawImage rawImage = this.dot.gameObject.GetComponentInChildren<RawImage>();
-            rawImage.enabled = false;
+        }
+        else
+        {
+            arrowImage.color = Color.red;
         }
     }
 
