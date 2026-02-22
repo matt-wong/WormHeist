@@ -1,46 +1,38 @@
 using UnityEngine;
 
-public static class VectorHelper{
+/// <summary>Angle and vector helpers using Unity's convention: 0° = right (+X), 90° = up (+Y), angles increase counter-clockwise.</summary>
+public static class VectorHelper
+{
+    /// <summary>Returns angle in degrees [0, 360). 0° = right (1,0), 90° = up (0,1).</summary>
     public static float Angle(Vector2 p_vector2)
     {
-        if (p_vector2.x < 0)
-        {
-            return 360 - (Mathf.Atan2(p_vector2.x, p_vector2.y) * Mathf.Rad2Deg * -1);
-        }
-        else
-        {
-            return Mathf.Atan2(p_vector2.x, p_vector2.y) * Mathf.Rad2Deg;
-        }
+        float deg = Mathf.Atan2(p_vector2.y, p_vector2.x) * Mathf.Rad2Deg;
+        return deg < 0f ? deg + 360f : deg;
     }
 
     public static Vector2 DegreeToVector2(float degree)
     {
         return RadianToVector2(degree * Mathf.Deg2Rad);
     }
+
+    /// <summary>0° → right (1,0), 90° → up (0,1). Matches Unity's Transform rotation (Euler Z).</summary>
     public static Vector2 RadianToVector2(float radian)
     {
-        return new Vector2(Mathf.Sin(radian), Mathf.Cos(radian));
+        return new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));
     }
 
-    public static eSensorDirection AngleToDirectionEnum(float angle){
-        if (angle == 0){
-            return eSensorDirection.N;
-        }else if (angle == 45){
-            return eSensorDirection.NW;
-        }else if (angle == 90){
-            return eSensorDirection.W;
-        }else if (angle == 135){
-            return eSensorDirection.SW;
-        }else if (angle == 180){
-            return eSensorDirection.S;
-        }else if (angle == 225){
-            return eSensorDirection.SE;
-        }else if (angle == 270){
-            return eSensorDirection.E;
-        }else if (angle == 315){
-            return eSensorDirection.NE;
-        }
-        return eSensorDirection.N;
+    /// <summary>Maps Unity angle to direction enum: 0°=E, 90°=N, 180°=W, 270°=S.</summary>
+    public static eSensorDirection AngleToDirectionEnum(float angle)
+    {
+        if (angle == 0f) return eSensorDirection.E;
+        if (angle == 45f) return eSensorDirection.NE;
+        if (angle == 90f) return eSensorDirection.N;
+        if (angle == 135f) return eSensorDirection.NW;
+        if (angle == 180f) return eSensorDirection.W;
+        if (angle == 225f) return eSensorDirection.SW;
+        if (angle == 270f) return eSensorDirection.S;
+        if (angle == 315f) return eSensorDirection.SE;
+        return eSensorDirection.E;
     }
 
     public static Vector2 DirectionEnumToVector(eSensorDirection direction)
