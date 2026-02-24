@@ -5,13 +5,15 @@ public class RotatingTurret : TurretBase
     [Tooltip("Degrees per second clockwise (negative = counter-clockwise)")]
     public float rotateSpeedDegPerSec = 90f;
 
+    public float lazerLength = 5f;
+
     private GameObject lazerObject;
     private sensorLazer lazerSensor;
     private float currentAngleDeg;
 
     protected override void InitializeTurret()
     {
-        lazerObject = CreateLazerOfDirection(0f, true);
+        lazerObject = CreateLazerOfDirection(0f, true, lazerLength);
         lazerSensor = lazerObject.GetComponentInChildren<sensorLazer>();
         currentAngleDeg = 0f;
     }
@@ -47,7 +49,8 @@ public class RotatingTurret : TurretBase
         Destroy(lazerObject);
         Destroy(lazerSensor);
         // Create a new lazer
-        lazerObject = CreateLazerOfDirection(0f, true);
+        this.lazerLength += 2;
+        lazerObject = CreateLazerOfDirection(0f, true, lazerLength);
         lazerSensor = lazerObject.GetComponentInChildren<sensorLazer>();
     }
 }

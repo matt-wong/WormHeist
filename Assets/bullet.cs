@@ -5,7 +5,7 @@ using UnityEngine;
 public class bullet : MonoBehaviour
 {
 
-    const float MIN_SPEED = 1f;
+    const float MIN_SPEED = 10f;
     private Rigidbody2D myRBody;
     private bool myWasFired = false;
 
@@ -27,7 +27,6 @@ public class bullet : MonoBehaviour
         }
         else if (myRBody.linearVelocity.magnitude < MIN_SPEED)
         {
-            Debug.Log("DEAD");
             Destroy(gameObject);
         }
     }
