@@ -246,7 +246,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -274,3 +274,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f462754be8c754452b4b7d0e4e242528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  itemToSpawn: {fileID: 1856073275428524659, guid: c52029a3b56374e6188c0f112473deb0, type: 3}
+  quantityRemaining: 1

@@ -3,6 +3,7 @@ using UnityEngine;
 public class oneItemStore : MonoBehaviour
 {
     [SerializeField] GameObject itemToSpawn;
+    public int quantityRemaining = 1;
 
     void Start()
     {
@@ -18,8 +19,10 @@ public class oneItemStore : MonoBehaviour
         coin asCoin = col.gameObject.GetComponent<coin>();
         if (asCoin == null) return;
 
-        asCoin.DisposeFromCollection();
-        if (itemToSpawn != null)
+        if (itemToSpawn != null && this.quantityRemaining > 0){
+            asCoin.DisposeFromCollection();
             Instantiate(itemToSpawn, transform.position, Quaternion.identity);
+            quantityRemaining--;
+        }
     }
 }
