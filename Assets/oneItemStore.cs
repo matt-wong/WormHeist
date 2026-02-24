@@ -2,15 +2,24 @@ using UnityEngine;
 
 public class oneItemStore : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] GameObject itemToSpawn;
+
     void Start()
     {
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    // If in contact with a coin, destroy it and spawn an item
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        coin asCoin = col.gameObject.GetComponent<coin>();
+        if (asCoin == null) return;
+
+        asCoin.DisposeFromCollection();
+        if (itemToSpawn != null)
+            Instantiate(itemToSpawn, transform.position, Quaternion.identity);
     }
 }
